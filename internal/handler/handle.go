@@ -2,7 +2,6 @@ package handler
 
 import (
 	"errors"
-	"log"
 	"net/http"
 	"strconv"
 
@@ -14,7 +13,7 @@ import (
 )
 
 func Calculate(c *gin.Context){
-	log.Println("Invoking lib Do function for addition")
+	logger.Info("Invoking lib Do function for addition")
 	
 	valType, err := validAndGetParsedVal(c, &c.Params, "type")
 	if err != nil {
