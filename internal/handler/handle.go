@@ -42,11 +42,6 @@ func Calculate(c *gin.Context){
 	logger.Info("Invoking lib Do function for: ", valType)
 	result := cal.Do(valA, valB, valType)
 
-	if result < 0 {
-		msg := "bad result / may functionality not implemented yet"
-		c.JSON(http.StatusBadRequest, response.Error(msg, 400)); return 
-	}
- 
 	c.JSON(http.StatusOK, response.Success("Calculation Completed", 200, result))
 }
 
