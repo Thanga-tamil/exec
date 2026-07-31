@@ -55,7 +55,7 @@ func validAndGetParsedVal(c *gin.Context, params *gin.Params, key string) (strin
 	val := c.Query(key)
 
 	if val == ""  {
-		logger.Error("type input param must not be null or empty")
+		logger.Error("Input '" + key + "' param must not be null or empty")
 		return "", errors.New("Input '" + key + "' must not be null or empty")
 	}
 
