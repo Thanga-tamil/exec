@@ -2,6 +2,6 @@ FROM golang:latest
 
 WORKDIR /app
 
-COPY go.mod go.sum config.json exec .
+COPY go.mod go.sum config.json run .
 
-CMD ["./exec"]
+CMD ["./run"]
