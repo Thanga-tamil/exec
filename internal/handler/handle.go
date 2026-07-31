@@ -25,7 +25,6 @@ func Add(c *gin.Context){
 		c.JSON(http.StatusBadRequest, response.Error(err.Error(), 400)); return
 	}
 
-	// func Do (x, y int, arg string) 
 	valA, err := strconv.Atoi(a)
 	if err != nil {
 		c.JSON(http.StatusBadRequest, response.Error(err.Error(), 400))
