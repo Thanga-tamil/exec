@@ -13,7 +13,6 @@ import (
 )
 
 func Calculate(c *gin.Context){
-	logger.Info("Invoking lib Do function for addition")
 	
 	valType, err := validAndGetParsedVal(c, &c.Params, "type")
 	if err != nil {
@@ -40,6 +39,7 @@ func Calculate(c *gin.Context){
 		c.JSON(http.StatusBadRequest, response.Error(err.Error(), 400)); return 
 	}
 
+	logger.Info("Invoking lib Do function for: ", valType)
 	result := cal.Do(valA, valB, valType)
 
 	if result < 0 {
