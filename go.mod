@@ -3,8 +3,9 @@ module github.com/Thanga-tamil/exec
 go 1.26.4
 
 require (
-	github.com/Thanga-tamil/lib v0.0.2
+	github.com/Thanga-tamil/lib v0.0.3
 	github.com/gin-gonic/gin v1.12.0
+	go.uber.org/zap v1.28.0
 )
 
 require (
@@ -32,7 +33,6 @@ require (
 	github.com/ugorji/go/codec v1.3.1 // indirect
 	go.mongodb.org/mongo-driver/v2 v2.5.0 // indirect
 	go.uber.org/multierr v1.10.0 // indirect
-	go.uber.org/zap v1.28.0 // indirect
 	golang.org/x/arch v0.22.0 // indirect
 	golang.org/x/crypto v0.48.0 // indirect
 	golang.org/x/net v0.51.0 // indirect

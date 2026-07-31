@@ -2,7 +2,6 @@ package handler
 
 import (
 	"errors"
-	"fmt"
 	"log"
 	"net/http"
 	"strconv"
@@ -15,7 +14,7 @@ import (
 )
 
 func Add(c *gin.Context){
-	log.Println("calling lib Do function for addition")
+	log.Println("Invoking lib Do function for addition")
 	
 	valType, err := validAndGetParsedVal(c, &c.Params, "type")
 	if err != nil {
@@ -32,7 +31,6 @@ func Add(c *gin.Context){
 		c.JSON(http.StatusBadRequest, response.Error(err.Error(), 400)); return
 	}
 
-
 	valA, err := strconv.Atoi(a)
 	if err != nil {
 		c.JSON(http.StatusBadRequest, response.Error(err.Error(), 400)); return
@@ -43,12 +41,13 @@ func Add(c *gin.Context){
 		c.JSON(http.StatusBadRequest, response.Error(err.Error(), 400)); return 
 	}
 
-	cal.Do(valA, valB, valType)
+	result := cal.Do(valA, valB, valType)
+
+	c.JSON(http.StatusOK, response.Success("Calculation Completed", 200, result))
 }
 
 func validAndGetParsedVal(c *gin.Context, params *gin.Params, key string) (string, error) {
 
-	fmt.Println("key: ", key)
 	val := c.Query(key)
 
 	if val == ""  {
