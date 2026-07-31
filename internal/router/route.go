@@ -7,8 +7,7 @@ import (
 
 func Route(group *gin.RouterGroup){
 
-	group.GET("/add", handler.Add)
-	group.GET("/sub", handler.Sub)
+	group.GET("/calculate", handler.Calculate)
 
 }
 

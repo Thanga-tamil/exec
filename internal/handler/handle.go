@@ -13,7 +13,7 @@ import (
 	logger "github.com/Thanga-tamil/exec/internal/utils"
 )
 
-func Add(c *gin.Context){
+func Calculate(c *gin.Context){
 	log.Println("Invoking lib Do function for addition")
 	
 	valType, err := validAndGetParsedVal(c, &c.Params, "type")
@@ -43,6 +43,11 @@ func Add(c *gin.Context){
 
 	result := cal.Do(valA, valB, valType)
 
+	if result < 0 {
+		msg := "bad result / may functionality not implemented yet"
+		c.JSON(http.StatusBadRequest, response.Error(msg, 400)); return 
+	}
+ 
 	c.JSON(http.StatusOK, response.Success("Calculation Completed", 200, result))
 }
 
@@ -58,7 +63,3 @@ func validAndGetParsedVal(c *gin.Context, params *gin.Params, key string) (strin
 	return val, nil
 }
 
-func Sub(c *gin.Context){
-	log.Println("calling lib Do function for subtraction")
-	// cal.Do()
-}
