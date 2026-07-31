@@ -1,11 +1,11 @@
 package main
 
 import (
-    "github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 
 	"github.com/Thanga-tamil/exec/internal/config"
 	"github.com/Thanga-tamil/exec/internal/router"
+	"github.com/Thanga-tamil/exec/internal/middleware"
 	logger "github.com/Thanga-tamil/exec/internal/utils"
 	consts "github.com/Thanga-tamil/exec/internal/utils"
 )
@@ -19,12 +19,7 @@ func main(){
 
 	serve := gin.Default()
 
-    serve.Use(cors.New(cors.Config{
-        AllowOrigins:     []string{"https://cli-ent-react.thangatamil1177.workers.dev"},
-        AllowMethods:     []string{"GET", "POST", "PUT", "DELETE", "OPTIONS"},
-        AllowHeaders:     []string{"Origin", "Content-Type", "Authorization"},
-        AllowCredentials: true,
-    }))
+	serve.Use(middleware.CORS())
 
 	cal := serve.Group("/api/cal")
 
