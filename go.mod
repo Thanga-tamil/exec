@@ -3,7 +3,7 @@ module github.com/Thanga-tamil/exec
 go 1.26.4
 
 require (
-	github.com/Thanga-tamil/lib v0.0.5
+	github.com/Thanga-tamil/lib v0.0.6
 	github.com/gin-gonic/gin v1.12.0
 	go.uber.org/zap v1.28.0
 )
