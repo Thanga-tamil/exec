@@ -12,42 +12,42 @@ import (
 	logger "github.com/Thanga-tamil/exec/internal/utils"
 )
 
-func Calculate(c *gin.Context){
+func Calculate(ginCtx *gin.Context){
 	
-	valType, err := validAndGetParsedVal(c, &c.Params, "type")
+	valType, err := validAndGetParsedVal(ginCtx, &ginCtx.Params, "type")
 	if err != nil {
-		c.JSON(http.StatusBadRequest, response.Error(err.Error(), 400)); return
+		ginCtx.JSON(http.StatusBadRequest, response.Error(err.Error(), 400)); return
 	}
 
-	a, err := validAndGetParsedVal(c, &c.Params, "a")
+	a, err := validAndGetParsedVal(ginCtx, &ginCtx.Params, "a")
 	if err != nil {
-		c.JSON(http.StatusBadRequest, response.Error(err.Error(), 400)); return
+		ginCtx.JSON(http.StatusBadRequest, response.Error(err.Error(), 400)); return
 	}
 
-	b, err := validAndGetParsedVal(c, &c.Params, "b")
+	b, err := validAndGetParsedVal(ginCtx, &ginCtx.Params, "b")
 	if err != nil {
-		c.JSON(http.StatusBadRequest, response.Error(err.Error(), 400)); return
+		ginCtx.JSON(http.StatusBadRequest, response.Error(err.Error(), 400)); return
 	}
 
 	valA, err := strconv.Atoi(a)
 	if err != nil {
-		c.JSON(http.StatusBadRequest, response.Error(err.Error(), 400)); return
+		ginCtx.JSON(http.StatusBadRequest, response.Error(err.Error(), 400)); return
 	}
 	
 	valB, err := strconv.Atoi(b)
 	if err != nil {
-		c.JSON(http.StatusBadRequest, response.Error(err.Error(), 400)); return 
+		ginCtx.JSON(http.StatusBadRequest, response.Error(err.Error(), 400)); return 
 	}
 
 	logger.Info("Invoking lib Do function for: ", valType)
 	result := cal.Do(valA, valB, valType)
 
-	c.JSON(http.StatusOK, response.Success("Calculation Completed", 200, result))
+	ginCtx.JSON(http.StatusOK, response.Success("Calculation Completed", 200, result))
 }
 
-func validAndGetParsedVal(c *gin.Context, params *gin.Params, key string) (string, error) {
+func validAndGetParsedVal(ginCtx *gin.Context, params *gin.Params, key string) (string, error) {
 
-	val := c.Query(key)
+	val := ginCtx.Query(key)
 
 	if val == ""  {
 		logger.Error("Input '" + key + "' param must not be null or empty")

@@ -3,9 +3,3 @@ services:
     build: .
     ports:
       - "8000:6969"
-  #   environment:
-  #     - REDIS_HOST=${REDIS_HOST}
-  #     - REDIS_PORT=${REDIS_PORT}
-  #
-  # redis:
-  #   image: redis:alpine
