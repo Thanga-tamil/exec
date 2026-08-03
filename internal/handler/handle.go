@@ -14,17 +14,17 @@ import (
 
 func Calculate(ginCtx *gin.Context){
 	
-	valType, err := validAndGetParsedVal(ginCtx, &ginCtx.Params, "type")
+	valType, err := validAndGetParsedVal(ginCtx, "type")
 	if err != nil {
 		ginCtx.JSON(http.StatusBadRequest, response.Error(err.Error(), 400)); return
 	}
 
-	a, err := validAndGetParsedVal(ginCtx, &ginCtx.Params, "a")
+	a, err := validAndGetParsedVal(ginCtx, "a")
 	if err != nil {
 		ginCtx.JSON(http.StatusBadRequest, response.Error(err.Error(), 400)); return
 	}
 
-	b, err := validAndGetParsedVal(ginCtx, &ginCtx.Params, "b")
+	b, err := validAndGetParsedVal(ginCtx, "b")
 	if err != nil {
 		ginCtx.JSON(http.StatusBadRequest, response.Error(err.Error(), 400)); return
 	}
@@ -45,7 +45,7 @@ func Calculate(ginCtx *gin.Context){
 	ginCtx.JSON(http.StatusOK, response.Success("Calculation Completed", 200, result))
 }
 
-func validAndGetParsedVal(ginCtx *gin.Context, params *gin.Params, key string) (string, error) {
+func validAndGetParsedVal(ginCtx *gin.Context, key string) (string, error) {
 
 	val := ginCtx.Query(key)
 
