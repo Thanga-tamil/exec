@@ -10,9 +10,10 @@ import (
 type Conf struct{
 	Host string
 	Port string
+	Mode string
 }
 
-func LoadConfig(path string) string {
+func LoadConfig(path string) (string, string) {
 
 	file, err := os.Open(path)
 	if err != nil {
@@ -25,5 +26,5 @@ func LoadConfig(path string) string {
 		logger.Fatalf("Err while unmarshal: %s\n", err.Error())
 	}
 
-	return res.Host + ":" + res.Port
+	return res.Host + ":" + res.Port, res.Mode
 }

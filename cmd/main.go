@@ -1,6 +1,7 @@
 package main
 
 import (
+	"strings"
 	"github.com/gin-gonic/gin"
 
 	"github.com/Thanga-tamil/exec/internal/config"
@@ -15,7 +16,9 @@ func main(){
 
 	logger.Init("exec.log")
 	
-	addr := config.LoadConfig(consts.Path)
+	addr, mode := config.LoadConfig(consts.Path)
+
+	setMode(mode)
 
 	serve := gin.Default()
 
@@ -27,4 +30,15 @@ func main(){
 
 	serve.Run(addr)
 
+}
+
+func setMode(mode string){
+	switch strings.ToLower(mode) {
+	case "release", "production", "prod":
+		gin.SetMode(gin.ReleaseMode)
+	case "dev", "qa", "":
+		gin.SetMode(gin.DebugMode)
+	default: 
+		gin.SetMode(gin.TestMode)
+	}
 }
