@@ -4,6 +4,7 @@ import (
 	"errors"
 	"net/http"
 	"strconv"
+	"time"
 
 	cal "github.com/Thanga-tamil/lib"
 	"github.com/gin-gonic/gin"
@@ -22,6 +23,7 @@ func Calculate(ginCtx *gin.Context){
 	valA, err := strconv.Atoi(a); errs(ginCtx, err)
 	valB, err := strconv.Atoi(b); errs(ginCtx, err)
 
+	time.Sleep(time.Second*30)
 	logger.Info("Invoking lib Do function for: ", valType)
 	result := cal.Do(valA, valB, valType)
 

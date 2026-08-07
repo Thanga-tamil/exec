@@ -11,6 +11,7 @@ import (
 	consts "github.com/Thanga-tamil/exec/internal/utils"
 )
 
+var count = new(0)
 
 func main(){
 
@@ -23,6 +24,8 @@ func main(){
 	serve := gin.Default()
 
 	serve.Use(middleware.CORS())
+
+	serve.Use(middleware.Counter(count))
 
 	cal := serve.Group("/api/cal")
 
